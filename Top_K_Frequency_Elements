@@ -1,0 +1,52 @@
+class Solution:
+    def topKFrequent(self, nums: List[int], k: int) -> List[int]:
+
+
+        #1. iterate and put all in dic and put d[i]= count
+        #2. now iterate dic and reverse store freq against numbers
+        #3. iterate sorted dic and put numbers in new list until list len==k
+
+        d={}
+
+        for i in nums:
+            if i in d:
+                d[i]+=1
+            else:
+                d[i]=1
+
+        print(d)
+
+
+        bucket={}
+
+
+        for i in d:
+            if d[i] in bucket:
+                bucket[d[i]].append(i)
+            else:
+                bucket[d[i]]=[i]
+
+        print(bucket)
+
+        lis=[]
+
+        count=0
+
+        
+        for i in sorted(bucket, reverse= True):
+                for j in bucket[i]:
+                    if count==k:
+                        return lis
+                    else:
+                        lis.append(j)
+                        count+=1
+
+        return lis
+
+        
+
+       
+
+
+            
+        
