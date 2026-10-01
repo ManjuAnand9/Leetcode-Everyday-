@@ -1,0 +1,90 @@
+# Question: Given["Hello", "String"]. You need to encode it result has to be like "5#Hello5#String".
+#           Decode String result should be back as ["Hello", "String"]
+
+#Approach:  1. Encoding- before each word, store len(word) follwoed by #. so before hello it has to be 5#.
+#              new_String+=str(len(i))+"#"+i.. result would be "5#Hello5#String"
+#           2. decoding: 
+#               while(i <len(s) and j<len(s)):
+#                   j=i+1
+#                   while(s[j]!='#'):
+#                       j+=1
+#             countString= s[i:j]
+#             count= int(countString)
+#             word= s[j+1:j+1+count]
+#             words.append(word)
+#             i=j+1+count
+
+       
+                     
+
+
+
+class Codec:
+    def encode(self, strs: List[str]) -> str:
+     
+        new_String= ""
+        for i in strs:
+            new_String+=str(len(i))+"#"+i
+        return (new_String)
+
+        
+
+    def decode(self, s: str) -> List[str]:
+        print(s)
+
+        i=0
+        j=0
+        countString=''
+
+        words=[]
+        word=''
+
+
+        while(i <len(s) and j<len(s)):
+            j=i+1
+            while(s[j]!='#'):
+                j+=1
+
+            countString= s[i:j]
+
+            #print(countString)
+            count= int(countString)
+            #print(count)
+
+            word= s[j+1:j+1+count]
+            #print(word)
+
+            words.append(word)
+            i=j+1+count
+
+
+        return words
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+                        
+
+           
+
+
+            
+
+
+
+        
+
+
+# Your Codec object will be instantiated and called as such:
+# codec = Codec()
+# codec.decode(codec.encode(strs))
